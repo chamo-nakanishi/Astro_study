@@ -1,98 +1,75 @@
 ---
+// ここは frontmatter と呼ばれる場所です。
+// ページを表示する前に、Astroがサーバー側でこのJavaScriptを実行します。
+
+// ページのタイトルとして使う文字列です。
 const pageTitle = "Astro テスト";
+
+// 今日の日付を日本の表記で作っています。
 const today = new Date().toLocaleDateString("ja-JP");
 
+// 箇条書きで表示する内容を、配列としてまとめています。
 const learningPoints = [
-  "The frontmatter block runs on the server.",
-  "JavaScript values can be inserted into HTML with braces.",
-  "Arrays can be rendered with map().",
-  "Styles in an Astro file are scoped to this page."
+  "frontmatterの中ではJavaScriptを書くことができます。",
+  "{} を使うと、JavaScriptの値をHTMLに表示できます。",
+  "配列は map() を使って、箇条書きとして表示できます。",
+  "このファイル内のCSSは、このページの見た目を整えます。"
 ];
 
-const userName = "Astro learner";
+// あいさつ文の中で使う名前です。
+const userName = "Chamoさん";
+
+// 共通ヘッダー用のAstroコンポーネントを読み込んでいます。
+import Header from "../components/Header.astro";
+
+// 共通ボタン用のAstroコンポーネントを読み込んでいます。
+import Button from "../components/Button.astro";
+
+// サイト全体で使うCSSファイルを読み込んでいます。
+import "../styles/global.css";
 ---
 
+<!-- ここから下は、ブラウザに表示されるHTMLです。 -->
 <!doctype html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- {} を使うと、frontmatterで用意したJavaScriptの値をHTMLに差し込めます。 -->
     <title>{pageTitle}</title>
   </head>
   <body>
+    <!-- Headerコンポーネントをここに表示しています。 -->
+    <Header />
+
     <main>
-      <p class="eyebrow">Today: {today}</p>
+      <!-- today の中身がここに表示されます。 -->
+      <p class="eyebrow">今日の日付: {today}</p>
+
+      <!-- pageTitle の中身が見出しとして表示されます。 -->
       <h1>{pageTitle}</h1>
-      <p class="lead">Hello, {userName}. This is your first tiny Astro page.</p>
+
+      <!-- userName の中身を文章の途中に差し込んでいます。 -->
+      <p class="lead">こんにちは、{userName}。これはAstroの練習用ページです。</p>
+
+      <!-- text と href を渡して、共通ボタンの表示内容を変えています。 -->
+      <Button text="下層ページを見る" href="/about/" />
 
       <section>
-        <h2>What this page shows</h2>
+        <h2>このページで学べること</h2>
         <ul>
+          <!-- map() で配列の中身を1つずつ <li> に変換しています。 -->
           {learningPoints.map((point) => <li>{point}</li>)}
         </ul>
       </section>
 
       <section class="note">
-        <h2>Try changing it</h2>
+        <h2>試してみよう</h2>
         <p>
-          Edit <code>src/pages/index.astro</code>, save the file, and the browser
-          will update while the dev server is running.
+          <code>src/pages/index.astro</code> を編集して保存すると、
+          開発サーバーが動いている間はブラウザの表示も更新されます。
         </p>
       </section>
     </main>
   </body>
 </html>
-
-<style>
-  body {
-    margin: 0;
-    font-family:
-      Inter, "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #f7f3ea;
-    color: #1f2933;
-  }
-
-  main {
-    width: min(720px, calc(100% - 32px));
-    margin: 64px auto;
-  }
-
-  .eyebrow {
-    color: #7c3aed;
-    font-size: 0.875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    margin: 0 0 16px;
-    font-size: clamp(2rem, 6vw, 4rem);
-    line-height: 1;
-  }
-
-  h2 {
-    margin-top: 32px;
-  }
-
-  .lead {
-    font-size: 1.25rem;
-    line-height: 1.6;
-  }
-
-  li {
-    margin: 10px 0;
-  }
-
-  .note {
-    border-left: 4px solid #f97316;
-    margin-top: 32px;
-    padding: 8px 0 8px 20px;
-    background: #fffaf0;
-  }
-
-  code {
-    background: #e5e7eb;
-    border-radius: 4px;
-    padding: 2px 6px;
-  }
-</style>

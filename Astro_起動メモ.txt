@@ -16,3 +16,31 @@ PowerShellでは npm run dev が止められることがあるので、
 このプロジェクトでは npm.cmd run dev を使う。
 
 終了したいときは、ターミナルで Ctrl + C を押す。
+
+
+公開用ファイルを作るとき
+
+完成したページをWEBサーバーにアップロードできる形にするときは、
+次のコマンドを実行する。
+
+npm.cmd run build
+
+実行すると、dist フォルダの中に index.html などの公開用ファイルが作られる。
+
+
+build後のページをブラウザで確認するとき
+
+dist フォルダの中身を、公開時に近い状態で確認したいときは、
+次のコマンドを実行する。
+
+npm.cmd run preview
+
+ターミナルに表示されたURLをブラウザで開く。
+
+例:
+http://localhost:4321/
+
+メモ:
+制作中は npm.cmd run dev を使う。
+公開用ファイルを作るときは npm.cmd run build を使う。
+build後の確認は npm.cmd run preview を使う。

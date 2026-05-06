@@ -1,0 +1,30 @@
+---
+// Header.astro は、複数のページで使い回すための共通ヘッダーです。
+// Astro.url.pathname で、今表示しているページのURLを確認できます。
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: "/", label: "トップ" },
+  { href: "/about/", label: "下層ページ" }
+];
+---
+
+<header class="site-header">
+  <a class="site-logo" href="/">Astro学習サイト</a>
+
+  <nav class="site-nav" aria-label="メインナビゲーション">
+    {
+      navItems.map((item) => (
+        <a
+          class:list={[
+            "nav-link",
+            currentPath === item.href && "is-active"
+          ]}
+          href={item.href}
+        >
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

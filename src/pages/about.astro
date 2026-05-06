@@ -1,0 +1,46 @@
+---
+// このページは、トップページとは別の下層ページです。
+// src/pages/about.astro は、ブラウザでは /about/ として表示されます。
+const pageTitle = "下層ページ";
+const description =
+  "Astroでは、src/pages にファイルを追加すると新しいページを作れます。";
+
+// トップページと同じヘッダーを使うために読み込んでいます。
+import Header from "../components/Header.astro";
+
+// トップページと同じボタンを使うために読み込んでいます。
+import Button from "../components/Button.astro";
+
+// サイト全体で使うCSSファイルを読み込んでいます。
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <!-- トップページと同じHeaderコンポーネントを表示しています。 -->
+    <Header />
+
+    <main>
+      <p class="eyebrow">新しく追加したページ</p>
+      <h1>{pageTitle}</h1>
+      <p class="lead">{description}</p>
+
+      <!-- hrefとtextを変えるだけで、同じ見た目のボタンを使い回せます。 -->
+      <Button text="トップページへ戻る" href="/" />
+
+      <section class="note">
+        <h2>このページのポイント</h2>
+        <p>
+          ヘッダーは <code>src/components/Header.astro</code> に分けたので、
+          トップページとこのページで同じものを使い回せます。
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

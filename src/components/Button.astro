@@ -1,0 +1,7 @@
+---
+// Button.astro は、複数ページで使い回せる共通ボタンです。
+// Astro.props で、使う側から渡された値を受け取れます。
+const { href = "/", text = "詳しく見る" } = Astro.props;
+---
+
+<a class="button" href={href}>{text}</a>
