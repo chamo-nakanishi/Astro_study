@@ -1,0 +1,18 @@
+Astroをブラウザで見るときのメモ
+
+1. VS Codeでこのプロジェクトを開く
+
+2. VS Code下部のターミナルで、次のコマンドを実行する
+
+npm.cmd run dev
+
+3. ターミナルに表示されたURLをブラウザで開く
+
+例:
+http://localhost:4321/
+
+メモ:
+PowerShellでは npm run dev が止められることがあるので、
+このプロジェクトでは npm.cmd run dev を使う。
+
+終了したいときは、ターミナルで Ctrl + C を押す。
